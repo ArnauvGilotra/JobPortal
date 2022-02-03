@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{%block content%}
+   <!-- Job Detail Section -->
+   <section class="job-detail-section">
+    <!-- Upper Box -->
+    <div class="upper-box">
+        <div class="auto-container">
+            <!-- Job Block -->
+            <div class="job-block-seven">
+                
+                <div class="inner-box">
+                    
+                    <div class="content">
+                        <span class="company-logo"><img src="{{job.company.logo_url()}}" alt=""></span>
+                        <h4><a href="#">{{job.title}}</a></h4>
+                        <ul class="job-info">
+                            <li><span class="icon flaticon-briefcase"></span> {{job.company.industry.name}}</li>
+                            <li><span class="icon flaticon-map-locator"></span>{{job.city.display()}}</li>
+                            <li><span class="icon flaticon-money"></span>{{job.salary_range()}} </li>
+                        </ul>
+                        <ul class="job-other-info">
+                            {% for skill in job.skills.all()%}
+                                <li class="time">{{skill}}</li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+
+                    <div class="btn-box">
+                        <a href="{{job.apply_url}}" class="theme-btn btn-style-one call-modal" >Apply For Job</a>
+                        <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>
+                    </div>
+                </div>
+                {% if message %}
+                <div class="message-box {{message_type}}">
+                    <p>{{message}}</p>
+                    <button class="close-btn"><span class="close_icon"></span></button>
+                </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+
+    <div class="job-detail-outer">
+        <div class="auto-container">
+            <div class="row">
+                <div class="content-column col-lg-8 col-md-12 col-sm-12">
+                    <div class="job-detail">
+                        {%if job.description%}
+                            <h4>Job Description</h4>
+                            {{job.description}}
+                        {%endif%}
+                        {%if job.responsibilities%}
+                            <h4>Key Responsibilities</h4>
+                            {{job.responsibilities}}
+                        {%endif%}
+                        {%if job.skills_and_experience %}
+                            <h4>Skill & Experience</h4>
+                            {{job.skills_and_experience}}
+                        {%endif%}
+                    </div>
+
+                    <!-- Other Options -->
+                    <div class="other-options">
+                        <div class="social-share">
+                            <h5>Share this job</h5>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{BASE_URL}}{{job.url}}" target="_BLANK" class="facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="http://twitter.com/share?url={{BASE_URL}}{{job.url}}" class="twitter" target="_BLANK"><i class="fab fa-twitter"></i> Twitter</a>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Related Jobs -->
+                    <div class="related-jobs">
+                        <div class="title-box">
+                            <h3>Related Jobs</h3>
+                        </div>
+
+                        {%for related_job in job.related_jobs() %}
+                            {% with job=related_job %}
+                                {% include 'jobs/includes/one-job.html' %}
+                            {%endwith%}
+                        {%endfor%}
+                    </div>
+                </div>
+
+                <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
+                    <aside class="sidebar">
+                        <div class="sidebar-widget">
+                            <!-- Job Overview -->
+                            <h4 class="widget-title">Job Overview</h4>
+                            <div class="widget-content">
+                                <ul class="job-overview">
+                                    <li>
+                                        <i class="icon icon-calendar"></i>
+                                        <h5>Date Posted:</h5>
+                                        <span>{{date_format(job.created)}}</span>
+                                    </li>
+                                    {% if job.expiration_date %}
+                                    <li>
+                                        <i class="icon icon-expiry"></i>
+                                        <h5>Expiration date:</h5>
+                                        <span>{{date_format(job.expiration_date)}}</span>
+                                    </li>
+                                    {%endif%}
+                                    <li>
+                                        <i class="icon icon-location"></i>
+                                        <h5>Location:</h5>
+                                        <span>{{job.city.display()}}</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon icon-salary"></i>
+                                        <h5>Salary:</h5>
+                                        <span>{{job.salary_range()}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {%if job.skills.exists() %}
+                            <!-- Job Skills -->
+                            <h4 class="widget-title">Job Skills</h4>
+                            <div class="widget-content">
+                                <ul class="job-skills">
+                                    {%for skill in job.skills.all() %}
+                                    <li><a href="#">{{skill}}</a></li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                            {%endif%}
+                        </div>
+
+                        <div class="sidebar-widget company-widget">
+                            <div class="widget-content">
+                                <div class="company-title">
+                                    <div class="company-logo"><img src="{{job.company.logo_url()}}" alt=""></div>
+                                    <h5 class="company-name">{{job.company.name}}</h5>
+                                    
+                                </div>
+
+                                <ul class="company-info">
+                                    <li>Primary industry: <span>{{job.company.industry.name}}</span></li>
+                                    {% if job.company.company_size%}<li>Company size: <span>{{job.company.get_company_size_display()}}</span></li>{%endif%}
+                                    {% if job.company.founded_in %}<li>Founded in: <span>{{job.company.founded_in}}</span></li>{%endif%}
+                                    {% if job.company.phone %}<li>Phone: <span>{{job.company.phone}}</span></li>{%endif%}
+                                    {% if job.company.email %}<li>Email: <span>{{job.company.email}}</span></li>{%endif%}
+                                    <li>Location: <span>{{job.company.city.display()}}</span></li>
+                                </ul>
+                                
+                                {% if job.company.website %}
+                                <div class="btn-box"><a href="#" class="theme-btn btn-style-three">{{job.company.website}}</a></div>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Job Detail Section -->
+
+{%endblock%}
+
+
+{%block additionafooter%}
+
+{%endblock%}

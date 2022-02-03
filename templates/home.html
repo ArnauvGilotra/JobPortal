@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+
+{%block content%}
+  <!-- Banner Section-->
+  <section class="banner-section">
+    <div class="auto-container">
+        <div class="row">
+            <div class="content-column col-lg-7 col-md-12 col-sm-12">
+                <div class="inner-column wow fadeInUp" data-wow-delay="1000ms">
+                    <div class="title-box">
+                        <h3>There Are <span class="colored">{{jobs.count()}}</span> Postings Here<br> For you!</h3>
+                        <div class="text">Find Jobs, Employment & Career Opportunities</div>
+                    </div>
+
+                    <!-- Job Search Form -->
+                    <div class="job-search-form">
+                        <form method="get" action="{{url('jobs:list')}}" action="job-list-v10.html">
+                            <div class="row">
+                                <div class="form-group col-lg-9 col-md-12 col-sm-12">
+                                    <span class="icon flaticon-search-1"></span>
+                                    <input type="text" name="q" placeholder="Job title, keywords, or company">
+                                </div>
+                                <!-- Form Group -->
+                                <div class="form-group col-lg-3 col-md-12 col-sm-12 btn-box">
+                                    <button type="submit" class="theme-btn btn-style-one"><span class="btn-title">Find Jobs</span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Job Search Form -->
+
+                    <!-- Popular Search -->
+                    <div class="popular-searches">
+                        <span class="title">Popular Searches : </span>
+                        <a href="#">Designer</a>, 
+                        <a href="#">Developer</a>, 
+                        <a href="#">Web</a>, 
+                        <a href="#">IOS</a>,
+                        <a href="#">PHP</a>,
+                        <a href="#">Senior</a>,
+                        <a href="#">Engineer</a>,
+                    </div>
+                    <!-- End Popular Search -->
+                </div>
+            </div>
+
+            <div class="image-column col-lg-5 col-md-12">
+                <div class="image-box">
+                    <figure class="main-image wow fadeIn" data-wow-delay="500ms"><img src="{{static('images/resource/banner-img-1.png')}}" alt=""></figure>
+
+                    <!-- Info BLock One -->
+                    <div class="info_block anm wow fadeIn" data-wow-delay="1000ms" data-speed-x="2" data-speed-y="2">
+                        <span class="icon flaticon-email-3"></span>
+                        <p>Work Inquiry From <br>Ali Tufan</p>
+                    </div>
+
+                    <!-- Info BLock Two -->
+                    <div class="info_block_two anm wow fadeIn" data-wow-delay="2000ms" data-speed-x="1" data-speed-y="1">
+                        <p>10k+ Candidates</p>
+                        <div class="image"><img src="{{static('images/resource/multi-peoples.png')}}" alt=""></div>
+                    </div>
+
+                    <!-- Info BLock Three -->
+                    <div class="info_block_three anm wow fadeIn" data-wow-delay="1500ms" data-speed-x="4" data-speed-y="4">
+                        <span class="icon flaticon-briefcase"></span>
+                        <p>Creative Agency</p>
+                        <span class="sub-text">Startup</span>
+                        <span class="right_icon fa fa-check"></span>
+                    </div>
+
+                    <!-- Info BLock Four -->
+                    <div class="info_block_four anm wow fadeIn" data-wow-delay="2500ms" data-speed-x="3" data-speed-y="3">
+                        <span class="icon flaticon-file"></span>
+                        <div class="inner">
+                            <p>Upload Your CV</p> 
+                            <span class="sub-text">It only takes a few seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Section-->
+
+<!-- Job Section -->
+<section class="job-section">
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <h2>Featured Jobs</h2>
+            <div class="text">Know your worth and find the job that qualify your life</div>
+        </div>
+
+        <div class="row wow fadeInUp">
+            {%with additional_class='col-lg-6 col-md-12 col-sm-12'%}
+            {%for job in jobs[:6]%}
+                {% include 'jobs/includes/one-job.html' %}
+            {%endfor%}
+            {%endwith%}
+        </div>
+
+        <div class="btn-box">
+            <a href="{{url('jobs:list')}}" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Load More Listing</span></a>
+        </div>
+    </div>
+</section>
+<!-- End Job Section -->
+
+<!-- Testimonial Section -->
+<section class="testimonial-section">
+    <div class="container-fluid">
+        <!-- Sec Title -->
+        <div class="sec-title text-center">
+            <h2>Testimonials From Our Customers</h2>
+            <div class="text">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor</div>
+        </div>
+        
+        <div class="carousel-outer wow fadeInUp">
+            
+            <!-- Testimonial Carousel -->
+            <div class="testimonial-carousel owl-carousel owl-theme">
+            
+                <!--Testimonial Block -->
+                <div class="testimonial-block">
+                    <div class="inner-box">
+                        <h4 class="title">Good theme</h4>
+                        <div class="text">Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything! Can’t quite… The Mitech team works really hard to ensure high level of quality</div>
+                        <div class="info-box">
+                            <div class="thumb"><img src="{{static('images/resource/testi-thumb-1.png')}}" alt=""></div>
+                            <h4 class="name">Nicole Wells</h4>
+                            <span class="designation">Web Developer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Testimonial Block -->
+                <div class="testimonial-block">
+                    <div class="inner-box">
+                        <h4 class="title">Great quality!</h4>
+                        <div class="text">Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything! Can’t quite… The Mitech team works really hard to ensure high level of quality</div>
+                        <div class="info-box">
+                            <div class="thumb"><img src="{{static('images/resource/testi-thumb-2.png')}}" alt=""></div>
+                            <h4 class="name">Gabriel Nolan</h4>
+                            <span class="designation">Consultant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Testimonial Block -->
+                <div class="testimonial-block">
+                    <div class="inner-box">
+                        <h4 class="title">Awesome Design </h4>
+                        <div class="text">Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything! Can’t quite… The Mitech team works really hard to ensure high level of quality</div>
+                        <div class="info-box">
+                            <div class="thumb"><img src="{{static('images/resource/testi-thumb-3.png')}}" alt=""></div>
+                            <h4 class="name">Ashley Jenkins</h4>
+                            <span class="designation">Designer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Testimonial Section -->
+
+<!-- About Section -->
+<section class="about-section">
+    <div class="auto-container">
+        <div class="row">
+            <!-- Content Column -->
+            <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+                <div class="inner-column wow fadeInUp">
+                    <div class="sec-title">
+                        <h2>Millions of Jobs. Find the one that suits you.</h2>
+                        <div class="text">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.</div>
+                    </div>
+                    <ul class="list-style-one">
+                        <li>Bring to the table win-win survival</li>
+                        <li>Capitalize on low hanging fruit to identify</li>
+                        <li>But I must explain to you how all this</li>
+                    </ul>
+                    <a href="{{url('jobs:list')}}" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Get Started</span></a>
+                </div>
+            </div>
+
+            <!-- Image Column -->
+            <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                <figure class="image wow fadeInLeft"><img src="{{static('images/resource/image-2.jpg')}}" alt=""></figure>
+               
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!-- End About Section -->
+
+<!-- News Section -->
+<section class="news-section" style="padding: 0px !important;">
+    <div class="auto-container">
+       
+        <!-- Fun Fact Section -->
+        <div class="fun-fact-section">
+            <div class="row">
+                <!--Column-->
+                <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
+                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="4">0</span>M</div>
+                    <h4 class="counter-title">4 million daily active users</h4>
+                </div>
+
+                <!--Column-->
+                <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
+                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="12">0</span>k</div>
+                    <h4 class="counter-title">Over 12k open job positions</h4>
+                </div>
+
+                <!--Column-->
+                <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
+                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="20">0</span>M</div>
+                    <h4 class="counter-title">Over 20 million stories shared</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Fun Fact Section -->
+    </div>
+</section>
+<!-- End News Section -->
+
+<!-- Call To Action -->
+<section class="call-to-action mt-5 mb-4">
+    <div class="auto-container">
+        <div class="outer-box wow fadeInUp">
+            <div class="content-column">
+                <div class="sec-title">
+                    <h2>Recruiting?</h2>
+                    <div class="text">Advertise your jobs to millions of monthly users and search 15.8 million<br> CVs in our database.</div>
+                    <a href="#" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Start Recruiting Now</span></a>
+                </div>
+            </div>
+
+            <div class="image-column" style="background-image: url({{static('images/resource/image-1.png')}});">
+                <figure class="image"><img src="{{static('images/resource/image-1.png')}}" alt=""></figure>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Call To Action -->
+{%endblock%}

@@ -1,0 +1,39 @@
+
+<div class="model">
+    <!-- Login modal -->
+    <div id="login-modal">
+         <!-- Login Form -->
+        <div class="login-form default-form">
+            <div class="form-inner">
+                <h3>{{job.title}}</h3>
+                <!--Login Form-->
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Full Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input id="email" type="email" name="email" value="" required placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Resume</label>
+                        <input id="resume" type="file" name="resume" value="" required placeholder="Select Resume"  accept=".pdf,.doc,.docx">
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <button class="theme-btn btn-style-one" type="submit" name="log-in">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!--End Login Form -->
+    </div>
+    <!-- End Login Module -->
+
+</div>
