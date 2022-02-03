@@ -1,2 +1,6 @@
-# JobPortal made using python and Django
-A job portal where user can search for jobs and upload their resume against it
+# A simple JobPortal using python and Django
+
+List jobs via admin.
+Allow search at the frontend.
+Allow user to upload CV against a job.
+Admin can download uploaded CVs from admin interface.
